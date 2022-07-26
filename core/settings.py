@@ -48,12 +48,18 @@ INSTALLED_APPS = [
 
     # Third Party
     'rest_framework',
+    'django_extensions',
+    'debug_toolbar',
 
     # Apps
     'api',
 ]
 
 MIDDLEWARE = [
+    # Third Party
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
+    # Django
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -134,9 +140,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django Rest Framework
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+# Django Debug Toolbar
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
