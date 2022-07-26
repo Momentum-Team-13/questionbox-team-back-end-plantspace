@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +23,6 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
+    path('apis/questions/', views.QuestionListView.as_view(), name='all_questions'),
+    path('apis/questions/<int:question_pk>/new', views.QuestionCreateView.as_view(), name='new_question'),
 ]
