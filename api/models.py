@@ -10,6 +10,8 @@ class CustomUser(AbstractUser):
         return f'<User username={self.username} pk={self.pk}>'
 
 class BaseModel(models.Model):
-    # Both attributes need options
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
