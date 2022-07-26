@@ -1,4 +1,4 @@
-# Team Fennec Fox
-### Backend Engineers: Amanda McMullin and Yuriy Golota
+# Team Fennec Foxes
+### Backend Engineers: Amanda McMillin & Yuriy Golota
 
-This repository is an API for a React frontend application called PlantSpace.
+This repository is the API for a React web application called PlantSpace.
