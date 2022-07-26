@@ -18,4 +18,4 @@ class BaseModel(models.Model):
 class Question(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions', null=True)
     title = models.CharField(max_length=125)
-    body = models.TextField(max_length=250)
+    body = models.TextField(max_length=750)
