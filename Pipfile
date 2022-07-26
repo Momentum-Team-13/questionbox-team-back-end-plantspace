@@ -9,6 +9,7 @@ djangorestframework = "*"
 django-environ = "*"
 django-extensions = "*"
 django-debug-toolbar = "*"
+djoser = "*"
 
 [dev-packages]
 

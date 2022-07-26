@@ -32,13 +32,12 @@ DEBUG = env('DEBUG')
 # exception if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
 
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,9 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third Party
-    'rest_framework',
     'django_extensions',
     'debug_toolbar',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 
     # Apps
     'api',
@@ -146,7 +147,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
 }
 
 # Django Debug Toolbar
