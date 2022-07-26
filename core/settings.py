@@ -158,3 +158,6 @@ REST_FRAMEWORK = {
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# Custom User Model
+AUTH_USER_MODEL = "api.User"
