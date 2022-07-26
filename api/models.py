@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
 class User(AbstractUser):
     def __str__(self):
         return self.username
@@ -15,3 +14,8 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+class Question(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions', null=True)
+    title = models.CharField(max_length=125)
+    body = models.TextField(max_length=750)
