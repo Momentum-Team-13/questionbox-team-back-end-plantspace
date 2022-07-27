@@ -16,7 +16,7 @@ class BaseModel(models.Model):
         abstract = True
 
 class Question(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions', null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')
     title = models.CharField(max_length=125)
     body = models.TextField(max_length=750)
 
