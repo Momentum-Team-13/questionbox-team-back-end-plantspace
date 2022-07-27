@@ -12,6 +12,7 @@ django-debug-toolbar = "*"
 djoser = "*"
 psycopg2-binary = "*"
 django-on-heroku = "*"
+gunicorn = "*"
 
 [dev-packages]
 
