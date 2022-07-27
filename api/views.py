@@ -17,4 +17,4 @@ class QuestionListView(generics.ListAPIView):
 class QuestionCreateView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_class = [permissions.IsAuthentiated]
+    permission_class = [permissions.IsAuthenticated]
