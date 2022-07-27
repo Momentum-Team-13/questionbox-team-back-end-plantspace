@@ -16,6 +16,18 @@ class BaseModel(models.Model):
         abstract = True
 
 class Question(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions', null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')
     title = models.CharField(max_length=125)
     body = models.TextField(max_length=750)
+
+    def __str__(self):
+        return f"{self.title}  -  {self.body}"
+
+
+class Answer(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
+    answer_body = models.TextField(max_length=750) 
+
+    def __str__(self):
+        return f"{self.question}  -  {self.body}"

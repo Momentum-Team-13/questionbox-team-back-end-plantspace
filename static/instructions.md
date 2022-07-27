@@ -12,15 +12,15 @@ You will need to make a list of your endpoints available to the front-end devs o
 
 #### Requirements
 
-- Allow an authenticated user to create a question (allowing for long-form text).
-- Allow an authenticated user to create an answer to a question (one question can have many answers).
-- Allow unauthenticated users to view all questions and answers.
+- ✔️Allow an authenticated user to create a question (allowing for long-form text).
+- ✔️Allow an authenticated user to create an answer to a question (one question can have many answers).
+- ✔️Allow unauthenticated users to view all questions and answers.
 - Have registration and token-based authentication.
 - Allow a user to get a list of all the questions they have posted.
 - Allow a user to get a list of all the answers they have posted.
 - Allow the original author of the question to mark an answer as accepted.
 - Questions cannot be edited once they have been asked (_note_: allowing editing of unanswered questions is listed as an extra challenge).
-- A question can be deleted by its author, whether answered or unanswered. If it is deleted, all associated answers should also be deleted.
+- ✔️A question can be deleted by its author, whether answered or unanswered. If it is deleted, all associated answers should also be deleted.
 - Users can search the database by supplying a search term. This should use [Django's PostgreSQL full-text search](https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/search/).
   - At minimum allow a search in the text of a question.
   - A more comprehensive search would allow searching both questions and answers.
