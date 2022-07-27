@@ -3,7 +3,7 @@
 
 This repository is the API for a React web application called PlantSpace.
 
-# Endpoints
+## Endpoints
 
 URL          | Method | Function
 :-------------|:--------:|--------------------:
@@ -13,3 +13,6 @@ URL          | Method | Function
 /api/questions/ | GET | All questions
 /api/questions/new/ | POST | Create Question
 
+## Heroku URL
+
+[https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fennec-foxes.herokuapp.com)
