@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import environ
 import os
+import django_on_heroku
 
 env = environ.Env(
     # set casting, default value
@@ -161,3 +162,7 @@ INTERNAL_IPS = [
 
 # Custom User Model
 AUTH_USER_MODEL = "api.User"
+
+# Heroku
+django_on_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
