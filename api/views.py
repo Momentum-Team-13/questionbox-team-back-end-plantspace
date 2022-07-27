@@ -1,5 +1,6 @@
 from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer
 from rest_framework import generics, permissions
+# from .permissions import IsOwner
 from .models import User, Question, Answer
 
 # Create your views here.
@@ -32,7 +33,7 @@ class AnswerQuestionView(generics.ListCreateAPIView):
 class QuestionDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_class = [permissions.IsAuthenticated, permissions.IsOwner]
+    permission_class = [permissions.IsAuthenticated] #permissions.IsOwner
 
 
 #get question detail view - creates read-only endpoint showing single instance of the model; authentication NOT required

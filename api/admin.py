@@ -4,4 +4,4 @@ from .models import User, Question, Answer
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Question)
-admin.site.regiester(Answer)
+admin.site.register(Answer)
