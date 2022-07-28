@@ -30,3 +30,5 @@ urlpatterns = [
     path('api/questions/<int:pk>/details', api_views.QuestionDetailView.as_view(), name='question_details'),
     path('api/questions/<int:pk>/trash', api_views.QuestionDeleteView.as_view(), name='delete_question'),
 ]
+
+# another pr comment for example

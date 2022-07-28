@@ -43,4 +43,5 @@ class QuestionDeleteView(generics.RetrieveUpdateDestroyAPIView):
 class QuestionDetailView(generics.RetrieveAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    
+
+# comment for PR purposes
