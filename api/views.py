@@ -1,7 +1,9 @@
+from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer
 from rest_framework import generics, permissions
 # from .permissions import IsOwner
 from .models import User, Question, Answer
+# from rest_framework.response import Response
 
 # Create your views here.
 class UserList(generics.ListAPIView):
@@ -32,7 +34,8 @@ class AnswerQuestionView(generics.ListCreateAPIView):
     permission_class = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        question=get_object_or_404(Question, pk=self.kwargs.get('pk'))
+        serializer.save(user=self.request.user, question=question)
 
 
 #delete question - ONLY by author...regardless of answered or unanswered; if deleted, all associated answers should also be deleted; #permissions.IsOwner designed from Custom Permissions DRF docs
