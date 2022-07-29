@@ -26,10 +26,13 @@ class QuestionCreateView(generics.ListCreateAPIView):
 
 
 #get question and post answer; creates endpoint allowing answer to be added for the question; user MUST be authenticated
-class AnswerQuestionView(generics.RetrieveUpdateDestroyAPIView):
+class AnswerQuestionView(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
     permission_class = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 #delete question - ONLY by author...regardless of answered or unanswered; if deleted, all associated answers should also be deleted; #permissions.IsOwner designed from Custom Permissions DRF docs

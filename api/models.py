@@ -31,4 +31,4 @@ class Answer(BaseModel):
     answer_body = models.TextField(max_length=750) 
 
     def __str__(self):
-        return f"{self.question}  -  {self.body}"
+        return f"{self.question}  -  {self.answer_body}"

@@ -171,4 +171,3 @@ del DATABASES['default']['OPTIONS']['sslmode']
 
 # Django CORS Headers
 CORS_ALLOW_ALL_ORIGINS = True
- 
