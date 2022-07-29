@@ -12,6 +12,7 @@ URL          | Method | Function
 /auth/token/logout/ | POST | Logout
 /api/questions/ | GET | All questions
 /api/questions/new/ | POST | Create Question
+/api/questions/<int:pk>/answer/ | POST | Answer Question
 
 ## Heroku URL
 
