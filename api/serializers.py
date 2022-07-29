@@ -11,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
+    category = serializers.ReadOnlyField(source='question.category')
 
     class Meta:
         model = Question
