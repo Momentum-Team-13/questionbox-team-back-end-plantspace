@@ -45,9 +45,4 @@ class QuestionDeleteView(generics.RetrieveUpdateDestroyAPIView):
     permission_class = [permissions.IsAuthenticated] #permissions.IsOwner
 
 
-#get question detail view - creates read-only endpoint showing single instance of the model; authentication NOT required
-class QuestionDetailView(generics.RetrieveAPIView):
-    queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
-
 # comment for PR purposes
