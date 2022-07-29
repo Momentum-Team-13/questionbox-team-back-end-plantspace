@@ -10,7 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    
+    user = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = Question
         fields = ('pk', 'user', 'title', 'body')
