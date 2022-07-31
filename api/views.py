@@ -3,6 +3,7 @@ from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer
 from rest_framework import generics, permissions
 from .permissions import IsOwner
 from .models import User, Question, Answer
+# from rest_framework.response import Response
 
 # Create your views here.
 class UserList(generics.ListAPIView):
@@ -27,7 +28,7 @@ class QuestionCreateView(generics.ListCreateAPIView):
 
 
 #get question and post answer; creates endpoint allowing answer to be added for the question; user MUST be authenticated
-class AnswerQuestionView(generics.RetrieveUpdateDestroyAPIView):
+class AnswerQuestionView(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
     permission_class = [permissions.IsAuthenticated]
@@ -49,3 +50,5 @@ class QuestionDetailView(generics.RetrieveAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     
+
+# comment for PR purposes

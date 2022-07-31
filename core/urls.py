@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from api import views as api_views
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +30,6 @@ urlpatterns = [
     path('api/questions/<int:pk>/details', api_views.QuestionDetailView.as_view(), name='question_details'),
     path('api/questions/<int:pk>/trash', api_views.QuestionDeleteView.as_view(), name='delete_question'),
 ]
+
+# another pr comment for example
+# add another comment
