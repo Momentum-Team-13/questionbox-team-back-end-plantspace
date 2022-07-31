@@ -10,16 +10,17 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+    category = serializers.ReadOnlyField(source='question.category')
     
     class Meta:
         model = Question
-        fields = ('pk', 'user', 'title', 'body')
+        fields = ('__all__')
 
 
 class AnswerSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = Answer
         fields = ('pk', 'user', 'question', 'answer_body')
-
-
