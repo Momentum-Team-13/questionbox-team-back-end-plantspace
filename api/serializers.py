@@ -11,8 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
-    category = serializers.ReadOnlyField(source='question.category')
-
+    # category = serializers.ReadOnlyField(source='question.category')
+    category = serializers.ListField(source='question.category')
     class Meta:
         model = Question
         fields = ('__all__')
