@@ -27,3 +27,4 @@ class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = ('pk', 'user', 'answer_body')
+
