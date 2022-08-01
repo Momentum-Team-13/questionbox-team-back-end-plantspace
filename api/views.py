@@ -28,13 +28,15 @@ class QuestionCreateView(generics.ListCreateAPIView):
 
 
 #get question and post answer; creates endpoint allowing answer to be added for the question; user MUST be authenticated
-class AnswerCreateView(generics.ListCreateAPIView):
-    queryset = Answer.objects.all()
+class AnswerListCreateView(generics.ListCreateAPIView):
     serializer_class = AnswerSerializer
-    permission_class = [permissions.IsAuthenticated]
+    permission_class = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Answer.objects.filter(question_id=self.kwargs["pk"])
 
     def perform_create(self, serializer):
-        question=get_object_or_404(Question, pk=self.kwargs.get('pk'))
+        question = get_object_or_404(Question, pk=self.kwargs.get('pk'))
         serializer.save(user=self.request.user, question=question)
 
 
@@ -49,6 +51,4 @@ class QuestionDeleteView(generics.RetrieveUpdateDestroyAPIView):
 class QuestionDetailView(generics.RetrieveAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    
-
-# comment for PR purposes
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
