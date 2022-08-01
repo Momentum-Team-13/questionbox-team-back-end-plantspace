@@ -28,7 +28,7 @@ class QuestionCreateView(generics.ListCreateAPIView):
 
 
 #get question and post answer; creates endpoint allowing answer to be added for the question; user MUST be authenticated
-class AnswerCreateView(generics.ListCreateAPIView):
+class AnswerListCreateView(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
     permission_class = [permissions.IsAuthenticated]
@@ -49,6 +49,8 @@ class QuestionDeleteView(generics.RetrieveUpdateDestroyAPIView):
 class QuestionDetailView(generics.RetrieveAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     
 
-# comment for PR purposes
+class AnswerListView(generics.ListAPIView):
+    pass
