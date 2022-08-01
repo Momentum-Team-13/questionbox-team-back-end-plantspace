@@ -22,11 +22,11 @@ class Question(BaseModel):
     # Question Categories
     HOUSE_PLANTS = 1
     OUTDOOR_PLANTS = 2
-    VEGITABLES = 3
+    VEGETABLES = 3
     QUESTION_CATEGORIES = [
         (HOUSE_PLANTS, 'House Plants'),
         (OUTDOOR_PLANTS, 'Outdoor Plants'),
-        (VEGITABLES, 'Vegitables'),
+        (VEGETABLES, 'Vegetables'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')
@@ -36,7 +36,7 @@ class Question(BaseModel):
     image = models.ImageField(null=True, blank=True,)
 
     def __str__(self):
-        return f"{self.title}  -  {self.body}"
+        return f"{self.title} {self.body} {self.category}"
 
 
 class Answer(BaseModel):
