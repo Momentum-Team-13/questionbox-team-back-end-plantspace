@@ -29,9 +29,12 @@ class QuestionCreateView(generics.ListCreateAPIView):
 
 #get question and post answer; creates endpoint allowing answer to be added for the question; user MUST be authenticated
 class AnswerListCreateView(generics.ListCreateAPIView):
-    queryset = Answer.objects.all()
+    # queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
     permission_class = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Answer.objects.filter(question_id=self.kwargs["question_pk"])
 
     def perform_create(self, serializer):
         question = get_object_or_404(Question, pk=self.kwargs.get('pk'))
