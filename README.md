@@ -12,7 +12,7 @@ URL          | Method | Function
 /auth/token/logout/ | POST | Logout
 /api/questions/ | GET | All questions
 /api/questions/new/ | POST | Create Question
-/api/questions/<int:pk>/answer/ | POST | Create Answer
+/api/questions/<int:pk>/answer/ | GET, POST | List Answers, Create Answer
 /api/questions/<int:pk>/details | GET | Question Details
 /api/questions/<int:pk>/trash | DELETE | Delete Question
 
