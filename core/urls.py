@@ -26,7 +26,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('api/questions/', api_views.QuestionListView.as_view(), name='all_questions'),
     path('api/questions/new/', api_views.QuestionCreateView.as_view(), name='ask_new_question'),
-    path('api/questions/<int:pk>/answer/', api_views.AnswerQuestionView.as_view(), name='answer_question'),
+    path('api/questions/<int:pk>/answer/', api_views.AnswerCreateView.as_view(), name='answer_create'),
     path('api/questions/<int:pk>/details', api_views.QuestionDetailView.as_view(), name='question_details'),
     path('api/questions/<int:pk>/trash', api_views.QuestionDeleteView.as_view(), name='delete_question'),
 ]
