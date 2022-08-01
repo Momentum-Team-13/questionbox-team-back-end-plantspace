@@ -11,12 +11,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
-    category = serializers.ReadOnlyField(source='question.category')
-
+    category = serializers.SerializerMethodField()
+    
     class Meta:
         model = Question
         fields = ('__all__')
-
+    
+    def get_category(self, obj):
+        return obj.get_category_display()
 
 
 class AnswerSerializer(serializers.ModelSerializer):
