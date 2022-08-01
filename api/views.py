@@ -34,7 +34,7 @@ class AnswerCreateView(generics.ListCreateAPIView):
     permission_class = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        question=get_object_or_404(Question, pk=self.kwargs.get('pk'))
+        question = get_object_or_404(Question, pk=self.kwargs.get('pk'))
         serializer.save(user=self.request.user, question=question)
 
 
