@@ -19,14 +19,14 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
-    category = serializers.SerializerMethodField()
+    category_name = serializers.SerializerMethodField()
     answers = AnswerSerializer(many=True, read_only=True)
     
     class Meta:
         model = Question
         fields = ('__all__')
     
-    def get_category(self, obj):
+    def get_category_name(self, obj):
         return obj.get_category_display()
 
 
