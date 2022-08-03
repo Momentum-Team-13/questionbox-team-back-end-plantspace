@@ -14,6 +14,13 @@ class QuestionSerializer(serializers.ModelSerializer):
         return obj.get_category_display()
 
 
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
 class AnswerSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     questions = QuestionSerializer(many=True, read_only=True)
@@ -23,7 +30,7 @@ class AnswerSerializer(serializers.ModelSerializer):
         fields = ('pk', 'user', 'answer_body', 'created_at')
 
 
-class QuestionAndAnswerSerializer(serializers.ModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     category_name = serializers.SerializerMethodField()
     answers = AnswerSerializer(many=True, read_only=True)
@@ -35,6 +42,7 @@ class QuestionAndAnswerSerializer(serializers.ModelSerializer):
     def get_category_name(self, obj):
         return obj.get_category_display()
 
+
 class UserSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True)
     questions = QuestionSerializer(many=True, read_only=True)
@@ -42,3 +50,4 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'questions', 'answers')
+
