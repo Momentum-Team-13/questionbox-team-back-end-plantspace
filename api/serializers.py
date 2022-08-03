@@ -2,13 +2,6 @@ from rest_framework import serializers
 from .models import Answer, User, Question
 
 
-class UserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ('id', 'username')
-
-
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     category = serializers.SerializerMethodField()
@@ -23,6 +16,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
+    questions = QuestionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Answer
@@ -41,11 +35,10 @@ class QuestionAndAnswerSerializer(serializers.ModelSerializer):
     def get_category_name(self, obj):
         return obj.get_category_display()
 
-
-class UsersQuestionsOnlySerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
+class UserSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializer(many=True, read_only=True)
+    questions = QuestionSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Question
-        fields = ('user', 'title', 'body')
-    
+        model = User
+        fields = ('id', 'username', 'questions', 'answers')

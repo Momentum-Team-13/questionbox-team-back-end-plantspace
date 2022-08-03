@@ -1,19 +1,15 @@
 from django.shortcuts import get_object_or_404
-from .serializers import UserSerializer, QuestionSerializer, QuestionAndAnswerSerializer, UsersQuestionsOnlySerializer
+from .serializers import UserSerializer, QuestionSerializer, QuestionAndAnswerSerializer 
 from rest_framework import generics, permissions
 from .permissions import IsOwner
 from .models import User, Question, Answer
-# from rest_framework.response import Response
-
-# Create your views here.
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 #get all questions; creates read-only endpoint representing a collection of questions; unauthentiated users can access this feature
 class QuestionListView(generics.ListAPIView):
-    queryset = Question.objects.all()
+    queryset = Question.objects.all().order_by("created_at")
     serializer_class = QuestionSerializer
 
 
@@ -53,8 +49,13 @@ class QuestionDetailView(generics.RetrieveAPIView):
     serializer_class = QuestionAndAnswerSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+#get questions user asked and answers user submitted
+class UserQuestionAndAnswerView(APIView):
+    def get(self, request):
+        serializer = UserSerializer(request.user)
 
-class UserQuestionView(generics.ListAPIView):
-    queryset = Question.objects.all().order_by("created_at")
-    serializer_class = UsersQuestionsOnlySerializer
-    permission_classes = [permissions.IsAuthenticated]
+        answers = request.user.answers
+        questions = set([answer.question for answer in answers.all()])
+        q_serializer = QuestionSerializer(questions, many=True)
+
+        return Response({"questions asked by user": serializer.data, "answers given by user":q_serializer.data})

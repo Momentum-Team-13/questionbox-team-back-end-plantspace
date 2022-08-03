@@ -15,7 +15,7 @@ URL          | Method | Function
 /api/questions/<int:pk>/answer/ | GET, POST | List Answers, Create Answer
 /api/questions/<int:pk>/details | GET | Question Details
 /api/questions/<int:pk>/trash | DELETE | Delete Question
-
+/api/myquestions/ | GET | All Questions Asked and Answers Submited By User
 
 ## Heroku URL
 
