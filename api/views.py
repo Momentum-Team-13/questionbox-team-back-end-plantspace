@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
-from .serializers import AnswerSerializer, UserSerializer, QuestionSerializer, AnswerSerializer2
-from rest_framework import generics, permissions
-from .permissions import QuestionOwner
 from .models import User, Question, Answer
+from .permissions import QuestionOwner
+from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, AnswerSerializer2
+from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -53,6 +53,7 @@ class QuestionDetailView(generics.RetrieveAPIView):
 #get questions user asked and answers user submitted
 class UserQuestionAndAnswerView(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    
     def get(self, request):
         answers = request.user.answers.all()
         questions = request.user.questions.all()
@@ -60,4 +61,3 @@ class UserQuestionAndAnswerView(APIView):
         a_serializer = AnswerSerializer(answers, many=True)
     
         return Response({"questions": q_serializer.data, "answers":a_serializer.data})
-
