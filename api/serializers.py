@@ -12,7 +12,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     category_name = serializers.SerializerMethodField()
-    answers = 'AnswerSerializer'(many=True, read_only=True)
+    answers = AnswerSerializer(many=True, read_only=True)
     
     class Meta:
         model = Question
