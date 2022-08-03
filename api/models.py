@@ -34,6 +34,7 @@ class Question(BaseModel):
     title = models.CharField(max_length=125)
     body = models.TextField(max_length=750)
     category = models.PositiveSmallIntegerField(choices=QUESTION_CATEGORIES, null=True, blank=True)
+    starred_by = models.ManyToManyField(User, related_name='starred_questions')
     image = models.ImageField(null=True, blank=True,)
 
     def __str__(self):
