@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer
+from .serializers import UserSerializer, QuestionSerializer, QuestionAndAnswerSerializer, UsersQuestionsOnlySerializer
 from rest_framework import generics, permissions
 from .permissions import IsOwner
 from .models import User, Question, Answer
@@ -29,7 +29,7 @@ class QuestionCreateView(generics.ListCreateAPIView):
 
 #get question and post answer; creates endpoint allowing answer to be added for the question; user MUST be authenticated
 class AnswerListCreateView(generics.ListCreateAPIView):
-    serializer_class = AnswerSerializer
+    serializer_class = QuestionAndAnswerSerializer
     permission_class = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
@@ -50,5 +50,11 @@ class QuestionDeleteView(generics.RetrieveUpdateDestroyAPIView):
 #get question detail view - creates read-only endpoint showing single instance of the model; authentication NOT required
 class QuestionDetailView(generics.RetrieveAPIView):
     queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
+    serializer_class = QuestionAndAnswerSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class UserQuestionView(generics.ListAPIView):
+    queryset = Question.objects.all().order_by("created_at")
+    serializer_class = UsersQuestionsOnlySerializer
+    permission_classes = [permissions.IsAuthenticated]
