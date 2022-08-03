@@ -21,6 +21,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     def get_category_name(self, obj):
         return obj.get_category_display()
 
+
 class AnswerSerializer2(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     questions = QuestionSerializer(many=True, read_only=True)
