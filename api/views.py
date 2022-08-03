@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from .models import User, Question, Answer
 from .permissions import QuestionOwner
-from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, AnswerSerializer2
+from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, AnswerSerializer2, StarSerializer
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -61,3 +61,9 @@ class UserQuestionAndAnswerView(APIView):
         a_serializer = AnswerSerializer(answers, many=True)
     
         return Response({"questions": q_serializer.data, "answers":a_serializer.data})
+
+
+class StarUnstarQuestion(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Question.objects.all()
+    serializer_class = StarSerializer
+    permission_classes = [permissions.IsAuthenticated]

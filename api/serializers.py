@@ -39,3 +39,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'questions', 'answers')
 
+
+class StarSerializer(serializers.ModelSerializer):
+    starred_by = serializers.ReadOnlyField(source='user.username')
+    
+    class Meta:
+        model: Question
+        fields = ('id', 'starred_by')
