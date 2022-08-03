@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
-from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, AnswerSerializer2
+from .serializers import AnswerSerializer, UserSerializer, QuestionSerializer, AnswerSerializer2
 from rest_framework import generics, permissions
-from .permissions import IsOwner
+from .permissions import QuestionOwner
 from .models import User, Question, Answer
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -40,7 +40,7 @@ class AnswerListCreateView(generics.ListCreateAPIView):
 class QuestionDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_class = [permissions.IsAuthenticated, IsOwner]
+    permission_class = [QuestionOwner]
 
 
 #get question detail view - creates read-only endpoint showing single instance of the model; authentication NOT required
@@ -52,11 +52,12 @@ class QuestionDetailView(generics.RetrieveAPIView):
 
 #get questions user asked and answers user submitted
 class UserQuestionAndAnswerView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request):
-        serializer = UserSerializer(request.user)
-        answers = request.user.answers
-        questions = set([answer.question for answer in answers.all()])
+        answers = request.user.answers.all()
+        questions = request.user.questions.all()
         q_serializer = QuestionSerializer(questions, many=True)
-
-        return Response({"questions asked by user": serializer.data, "answers given by user":q_serializer.data})
+        a_serializer = AnswerSerializer(answers, many=True)
+    
+        return Response({"questions": q_serializer.data, "answers":a_serializer.data})
 
