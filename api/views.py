@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer, QuestionAndAnswerSerializer
+from .serializers import UserSerializer, QuestionSerializer, AnswerSerializer
 from rest_framework import generics, permissions
 from .permissions import IsOwner
 from .models import User, Question, Answer
@@ -9,13 +9,13 @@ from rest_framework.views import APIView
 
 #get all questions; creates read-only endpoint representing a collection of questions; unauthentiated users can access this feature
 class QuestionListView(generics.ListAPIView):
-    queryset = Question.objects.all().order_by("created_at")
+    queryset = Question.objects.all().order_by('created_at')
     serializer_class = QuestionSerializer
 
 
 #post new question; this provides create-only endpoint; user MUST be authenticated
 class QuestionCreateView(generics.ListCreateAPIView):
-    queryset = Question.objects.all()
+    queryset = Question.objects.all().order_by('created_at')
     serializer_class = QuestionSerializer
     permission_class = [permissions.IsAuthenticated]
 
@@ -54,7 +54,6 @@ class QuestionDetailView(generics.RetrieveAPIView):
 class UserQuestionAndAnswerView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
-
         answers = request.user.answers
         questions = set([answer.question for answer in answers.all()])
         q_serializer = QuestionSerializer(questions, many=True)
