@@ -136,15 +136,16 @@ _
 - Methods: star- POST, unstar - DELETE
 
 
-### List All User Created Questions and Answers
+### List User's Questions and Answers
 > /api/myquestions/
 - Method: GET
 - Response: 200_OK, Array of all questions and answers created by specific user
 
 
-## Running a local PostgreSQL database
 
-### Clone the API repository:
+# Running a local PostgreSQL database
+
+### Clone the API repository
 ```bash
 git clone https://github.com/Momentum-Team-13/questionbox-team-back-end-plantspace.git
 ```
@@ -159,23 +160,25 @@ Activate a vitual enviroment:
 pipenv shell
 ```
 
-Install the dependencies:
+Install dependencies:
 ```bash
 pipenv install
 ```
 
 ### Create a local PostgreSQL database
 This project uses [PostgreSQL 14.4](https://www.postgresql.org/).
+
+Install PostgreSQL:
 ```bash
 brew install postgresql
 ```
 
-Run PostgreSQL:
+Start PostgreSQL:
 ```bash
 brew services start postgresql
 ```
 
-Create a local instance of a database. It is generally considered good practice to use the same name for username and database name.
+When creating a local database, it is generally considered good practice to use the same name for username and database name.
 
 Create a user:
 ```bash
@@ -198,7 +201,7 @@ Create a .env file in /core directory:
 touch ./core/.env
 ```
 
-Refer to .env.sample for how to configure your local copy of .env. Configure the database url in the following manner:
+Refer to .env.sample for how to configure your local copy of .env. Include a database url with the following syntax:
 ```bash
 DATABASE_URL=postgres://<username>:@127.0.0.1:5432/<dbname>
 ```
@@ -208,4 +211,5 @@ DATABASE_URL=postgres://<username>:@127.0.0.1:5432/<dbname>
 python manage.py runserver
 ```
 
-[Postico](https://eggerapps.at/postico/) or [Dbeaver](https://dbeaver.io/) are great tools to that provide a GUI to interact with your database. [Insomnia](https://insomnia.rest/products/insomnia) is a great way to query your server, whether local or remote. All three are available on Homebrew.
+### Database tools
+[Postico](https://eggerapps.at/postico/) and [Dbeaver](https://dbeaver.io/) are great tools to that provide a GUI to interact with your database. [Insomnia](https://insomnia.rest/products/insomnia) is a great way to query your server, whether local or remote. All three are available on Homebrew.
