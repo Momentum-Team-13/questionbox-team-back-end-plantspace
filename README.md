@@ -145,5 +145,36 @@ _
 
 ## Running a local PostgreSQL database
 
-Clone the repository:
->
+### Clone the API repository:
+```bash
+git clone https://github.com/Momentum-Team-13/questionbox-team-back-end-plantspace.git
+```
+
+### Install project dependencies
+This project uses [Python 3.10](https://www.python.org/).
+
+Use [pipenv](https://pypi.org/project/pipenv/) to run a virtual enviroment with all the project dependencies.
+
+Activate a vitual enviroment:
+```bash
+pipenv shell
+```
+
+Install the dependencies:
+```bash
+pipenv install
+```
+
+### Create a local PostgreSQL database
+This project uses [PostgreSQL 14.4](https://www.postgresql.org/).
+```bash
+brew install postgresql
+```
+
+Run PostgreSQL:
+```bash
+brew services start postgresql
+```
+
+Create a local instance of a database. It is 
+
