@@ -88,12 +88,12 @@ class StarUnstarAnswerView(APIView):
         user = self.request.user
         answer = get_object_or_404(Answer, pk=self.kwargs['pk'])
         user.starred_answers.add(answer)
-        serializer = AnswerSerializer2(answer, context={'request': request})
+        serializer = AnswerSerializer(answer, context={'request': request})
         return Response(serializer.data, status=201)
 
     def delete(self, request, *args, **kwargs):
         user = self.request.user
         answer = get_object_or_404(Answer, pk=self.kwargs['pk'])
         user.starred_answers.remove(answer)
-        serializer = AnswerSerializer2(answer, context={'request': request})
+        serializer = AnswerSerializer(answer, context={'request': request})
         return Response(serializer.data, status=204)
