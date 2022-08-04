@@ -24,7 +24,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer2(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
-    # question = QuestionSerializer(many=True, read_only=True)
+    question = QuestionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Answer
