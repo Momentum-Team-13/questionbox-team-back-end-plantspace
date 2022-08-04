@@ -20,7 +20,7 @@ Base URL: [https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fen
 | /api/questions/<int:pk>/star    | POST, DELETE |         Star Question, Unstar Question |
 | /api/questions/<int:pk>/trash   |    DELETE    |                        Delete Question |
 | /api/answers/<int:pk>/star      | POST, DELETE |             Star Answer, Unstar Answer |
-| /api/myquestions/               |     GET      | All User Created Questions and Answers |
+| /api/myquestions/               |     GET      | List User's Questions and Answers |
 
 
 
@@ -139,8 +139,7 @@ _
 ### List All User Created Questions and Answers
 > /api/myquestions/
 - Method: GET
-- Response: 200_OK, Array of all questions and answers created by specific user
-
+- - Response: 200_OK, Array of all questions and answers created by specific user
 
 
 ## Running a local PostgreSQL database
@@ -177,4 +176,3 @@ brew services start postgresql
 ```
 
 Create a local instance of a database. It is 
-
