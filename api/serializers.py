@@ -24,11 +24,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer2(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
-    question = QuestionSerializer(many=True, read_only=True)
+    questions = QuestionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Answer
-        fields = ('pk', 'user', 'question', 'answer_body', 'starred_by', 'created_at')
+        fields = ('pk', 'user', 'answer_body', 'created_at')
 
 
 class UserSerializer(serializers.ModelSerializer):
