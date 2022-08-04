@@ -13,18 +13,18 @@ Base URL: [https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fen
 | /auth/users/                    |     POST     |                            Create User |
 | /auth/token/login/              |     POST     |                                  Login |
 | /auth/token/logout/             |     POST     |                                 Logout |
-| /api/questions/                 |     GET      |                          All questions |
+| /api/questions/                 |     GET      |                          All Questions |
 | /api/questions/new/             |     POST     |                        Create Question |
 | /api/questions/<int:pk>/answer/ |  GET, POST   |            List Answers, Create Answer |
 | /api/questions/<int:pk>/details |     GET      |                       Question Details |
 | /api/questions/<int:pk>/star    | POST, DELETE |         Star Question, Unstar Question |
 | /api/questions/<int:pk>/trash   |    DELETE    |                        Delete Question |
 | /api/answers/<int:pk>/star      | POST, DELETE |             Star Answer, Unstar Answer |
-| /api/myquestions/               |     GET      | All User Created Questions and Answers |
+| /api/myquestions/               |     GET      | List User's Questions and Answers |
 
 
 
-### Create User
+### Register
 > /auth/users/
 - Method: POST
 - Data JSON:
@@ -72,7 +72,7 @@ Base URL: [https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fen
 ### List All Questions
 > /api/questions/
 - Method: GET
-- Response: Array of all questions
+- Response: 200_OK, Array of all questions
 
 
 ### Create Question
@@ -88,19 +88,19 @@ Base URL: [https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fen
 }
 ```
 
-Response: 201 Created
+Response: 201_Created
 
 
-### List Answers/Create Answer
+### List Answers / Create Answer
 > /api/questions/int:pk/answer/
 - List Answers:
   - Method: GET
-  - The pk in the URL above identifies the question for which you want the answers
-  - Response: Array of answers for question specified in URL
+  - The URL pk identifies the question whose answers will return
+  - Response: 200_OK, Array of answers for question specified in URL
 
 - Create Answer:
   - Method: POST
-  - The pk in the URL above identifies the question you want to answer
+  - The URL pk identifies the question being answered
   - Data JSON: Example
 
 ```
@@ -108,18 +108,18 @@ Response: 201 Created
 "answer_body": "your sample answer here"	
 }
 ```
-
-  - Response: 201 Created
+_
+  - Response: 201_Created
 
 
 ### Question Detail
 > /api/questions/int:pk/details
 - Method: GET
-- The pk in the URL above identifies the question for which you want details
-- Response: Array of details for question specified in URL
+- The URL pk identifies the question for which to return details
+- Response: 200_OK, Array of details for question specified in URL
 
 
-### Star Question/Unstar Question
+### Star Question / Unstar Question
 > /api/questions/int:pk/star
 - Methods: star- POST, unstar - DELETE
 
@@ -128,10 +128,10 @@ Response: 201 Created
 > /api/questions/int:pk/trash
 - Method: DELETE 
 - The pk in the URL above identifies the question you wish to delete
-- Response: 204 No Content
+- Response: 204_NO_CONTENT
 
 
-### Star Answer/Unstar Answer
+### Star Answer / Unstar Answer
 > /api/answers/int:pk/star
 - Methods: star- POST, unstar - DELETE
 
@@ -139,4 +139,4 @@ Response: 201 Created
 ### List All User Created Questions and Answers
 > /api/myquestions/
 - Method: GET
-- Response: Array of all questions and answers created by specific user
+- Response: 200_OK, Array of all questions and answers created by specific user
