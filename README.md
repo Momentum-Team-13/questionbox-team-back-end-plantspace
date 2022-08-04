@@ -14,7 +14,9 @@ URL          | Method | Function
 /api/questions/new/ | POST | Create Question
 /api/questions/<int:pk>/answer/ | GET, POST | List Answers, Create Answer
 /api/questions/<int:pk>/details | GET | Question Details
+/api/questions/<int:pk>/star | POST, DELETE | Star Question, Unstar Question
 /api/questions/<int:pk>/trash | DELETE | Delete Question
+/api/answers/<int:pk>/star | POST, DELETE | Star Answer, Unstar Answer
 /api/myquestions/ | GET | All Questions Asked and Answers Submitted By User
 
 ## Heroku URL
