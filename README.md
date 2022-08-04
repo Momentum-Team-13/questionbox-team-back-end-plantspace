@@ -15,7 +15,7 @@ Base URL: [https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fen
 | /auth/token/logout/             |     POST     |                                 Logout |
 | /api/questions/                 |     GET      |                          All Questions |
 | /api/questions/new/             |     POST     |                        Create Question |
-| /api/questions/<int:pk>/answer/ |  GET, POST   |            List Question's Answers, Create Answer |
+| /api/questions/<int:pk>/answer/ |  GET, POST   |            List Answers, Create Answer |
 | /api/questions/<int:pk>/details |     GET      |                       Question Details |
 | /api/questions/<int:pk>/star    | POST, DELETE |         Star Question, Unstar Question |
 | /api/questions/<int:pk>/trash   |    DELETE    |                        Delete Question |
@@ -139,40 +139,4 @@ _
 ### List All User Created Questions and Answers
 > /api/myquestions/
 - Method: GET
-- - Response: 200_OK, Array of all questions and answers created by specific user
-
-
-## Running a local PostgreSQL database
-
-### Clone the API repository:
-```bash
-git clone https://github.com/Momentum-Team-13/questionbox-team-back-end-plantspace.git
-```
-
-### Install project dependencies
-This project uses [Python 3.10](https://www.python.org/).
-
-Use [pipenv](https://pypi.org/project/pipenv/) to run a virtual enviroment with all the project dependencies.
-
-Activate a vitual enviroment:
-```bash
-pipenv shell
-```
-
-Install the dependencies:
-```bash
-pipenv install
-```
-
-### Create a local PostgreSQL database
-This project uses [PostgreSQL 14.4](https://www.postgresql.org/).
-```bash
-brew install postgresql
-```
-
-Run PostgreSQL:
-```bash
-brew services start postgresql
-```
-
-Create a local instance of a database. It is 
+- Response: 200_OK, Array of all questions and answers created by specific user
