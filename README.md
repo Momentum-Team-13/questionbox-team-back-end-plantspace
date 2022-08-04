@@ -140,3 +140,10 @@ _
 > /api/myquestions/
 - Method: GET
 - Response: 200_OK, Array of all questions and answers created by specific user
+
+
+
+## Running a local PostgreSQL database
+
+Clone the repository:
+>
