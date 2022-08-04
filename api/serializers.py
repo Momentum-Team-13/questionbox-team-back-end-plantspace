@@ -7,7 +7,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('pk', 'user', 'answer_body', 'created_at')
+        fields = ('pk', 'user', 'question', 'answer_body', 'starred_by', 'created_at')
 
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
@@ -24,11 +24,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer2(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
-    questions = QuestionSerializer(many=True, read_only=True)
+    # question = QuestionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Answer
-        fields = ('pk', 'user', 'answer_body', 'created_at')
+        fields = ('pk', 'user', 'question', 'answer_body', 'starred_by', 'created_at')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -44,5 +44,5 @@ class StarSerializer(serializers.ModelSerializer):
     starred_by = serializers.ReadOnlyField(source='user.username')
     
     class Meta:
-        model: Question
+        model = Question
         fields = ('id', 'starred_by')

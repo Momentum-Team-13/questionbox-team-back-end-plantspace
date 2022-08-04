@@ -44,7 +44,8 @@ class Question(BaseModel):
 class Answer(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answers')
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
-    answer_body = models.TextField(max_length=750) 
-
+    answer_body = models.TextField(max_length=750)
+    starred_by = models.ManyToManyField(User, related_name='starred_answers', blank=True)
+ 
     def __str__(self):
         return f"{self.question}  -  {self.answer_body}"
