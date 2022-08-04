@@ -140,3 +140,72 @@ _
 > /api/myquestions/
 - Method: GET
 - Response: 200_OK, Array of all questions and answers created by specific user
+
+
+## Running a local PostgreSQL database
+
+### Clone the API repository:
+```bash
+git clone https://github.com/Momentum-Team-13/questionbox-team-back-end-plantspace.git
+```
+
+### Install project dependencies
+This project uses [Python 3.10](https://www.python.org/).
+
+Use [pipenv](https://pypi.org/project/pipenv/) to run a virtual enviroment with all the project dependencies.
+
+Activate a vitual enviroment:
+```bash
+pipenv shell
+```
+
+Install the dependencies:
+```bash
+pipenv install
+```
+
+### Create a local PostgreSQL database
+This project uses [PostgreSQL 14.4](https://www.postgresql.org/).
+```bash
+brew install postgresql
+```
+
+Run PostgreSQL:
+```bash
+brew services start postgresql
+```
+
+Create a local instance of a database. It is generally considered good practice to use the same name for username and database name.
+
+Create a user:
+```bash
+createuser -d <username>
+```
+
+Create a database:
+```bash
+createdb -U <username> <dbname>
+```
+
+### Configure Django to connect to your local database
+Install a Python PostgreSQL adapter:
+```bash
+pipenv install psycopg2-binary
+```
+
+Create a .env file in /core directory:
+```bash
+touch ./core/.env
+```
+
+Refer to .env.sample for how to configure your local copy of .env. Configure the database url in the following manner:
+```bash
+DATABASE_URL=postgres://<username>:@127.0.0.1:5432/<dbname>
+```
+
+### Run your local server
+```bash
+python manage.py runserver
+```
+
+[Postico](https://eggerapps.at/postico/) or [Dbeaver](https://dbeaver.io/) are great tools to that provide a GUI to interact with your database. [Insomnia](https://insomnia.rest/products/insomnia) is a great way to query your server, whether local or remote. All three are available on Homebrew.
