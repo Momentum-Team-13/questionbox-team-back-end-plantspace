@@ -35,7 +35,6 @@ class Question(BaseModel):
     body = models.TextField(max_length=750)
     category = models.PositiveSmallIntegerField(choices=QUESTION_CATEGORIES, null=True, blank=True)
     starred_by = models.ManyToManyField(User, related_name='starred_questions', blank=True)
-    image = models.ImageField(null=True, blank=True,)
 
     def __str__(self):
         return f"{self.title} {self.body} {self.category}"
