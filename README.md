@@ -176,5 +176,37 @@ Run PostgreSQL:
 brew services start postgresql
 ```
 
-Create a local instance of a database. It is 
+Create a local instance of a database. It is generally considered good practice to use the same name for username and database name.
 
+Create a user:
+```bash
+createuser -d <username>
+```
+
+Create a database:
+```bash
+createdb -U <username> <dbname>
+```
+
+### Configure Django to connect to your local database
+Install a Python PostgreSQL adapter:
+```bash
+pipenv install psycopg2-binary
+```
+
+Create a .env file in /core directory:
+```bash
+touch ./core/.env
+```
+
+Refer to .env.sample for how to configure your local copy of .env. Configure the database url in the following manner:
+```bash
+DATABASE_URL=postgres://<username>:@127.0.0.1:5432/<dbname>
+```
+
+### Run your local server
+```bash
+python manage.py runserver
+```
+
+[Postico](https://eggerapps.at/postico/) or [Dbeaver](https://dbeaver.io/) are great tools to that provide a GUI to interact with your database. [Insomnia](https://insomnia.rest/products/insomnia) is a great way to query your server, whether local or remote. All three are available on Homebrew.
