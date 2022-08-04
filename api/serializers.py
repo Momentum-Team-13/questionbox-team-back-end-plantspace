@@ -17,6 +17,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True)
     starred_by = serializers.ReadOnlyField(source='user.username')
 
+
     class Meta:
         model = Question
         fields = ('__all__')
