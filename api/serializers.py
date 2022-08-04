@@ -25,7 +25,6 @@ class QuestionSerializer(serializers.ModelSerializer):
         slug_field='username'
     )
 
-
     class Meta:
         model = Question
         fields = ('__all__')
