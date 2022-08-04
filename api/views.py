@@ -66,7 +66,7 @@ class UserQuestionAndAnswerView(APIView):
 class StarUnstarQuestionView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request):
+    def post(self, request, **kwarg):
         user = self.request.user
         question = get_object_or_404(Question, pk=self.kwargs['pk'])
         user.starred_questions.add(question)
