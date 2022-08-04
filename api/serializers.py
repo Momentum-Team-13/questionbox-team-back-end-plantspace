@@ -4,7 +4,11 @@ from .models import Answer, User, Question
 
 class AnswerSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
-    starred_by = serializers.ReadOnlyField(source='user.username')
+    starred_by = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='username'
+    )
 
     class Meta:
         model = Answer
@@ -15,7 +19,11 @@ class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     category_name = serializers.SerializerMethodField()
     answers = AnswerSerializer(many=True, read_only=True)
-    starred_by = serializers.ReadOnlyField(source='user.username')
+    starred_by = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='username'
+    )
 
 
     class Meta:
