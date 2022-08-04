@@ -60,7 +60,6 @@ Base URL: [https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fen
 ```
 
 
-
 ### Logout
 > /auth/token/logout/
 - Method: POST
@@ -73,37 +72,7 @@ Base URL: [https://plantspace-fennec-foxes.herokuapp.com](https://plantspace-fen
 ### List All Questions
 > /api/questions/
 - Method: GET
-- Data JSON: Example
-
-```
-{
-		"id": 1,
-		"user": "admin",
-		"category_name": "House Plants",
-		"answers": [],
-		"created_at": "2022-07-28T19:56:47.509638Z",
-		"updated_at": "2022-08-01T17:22:28.750849Z",
-		"title": "Does my plant need fertilizer?",
-		"body": "HELP! My houseplant looks like it is on the way OUT. Does it need water? Does it need fertilizer? Does it need to be adopted by a better caretaker?",
-		"category": 1,
-		"image": null,
-		"starred_by": []
-	},
-    {
-		"id": 3,
-		"user": "wannahavegreenthumb1",
-		"category_name": "Vegetables",
-		"answers": [],
-		"created_at": "2022-07-28T20:03:48.500586Z",
-		"updated_at": "2022-08-01T17:23:09.729538Z",
-		"title": "Newbie here",
-		"body": "How can I get started to make a vegetable patch in my backyard?",
-		"category": 3,
-		"image": null,
-		"starred_by": []
-	}
-```
-- Response: 200 OK
+- Response: Array of all questions
 
 
 ### Create Question
@@ -124,34 +93,30 @@ Response: 201 Created
 
 ### List Answers/Create Answer
 > /api/questions/int:pk/answer/
-- Methods: list - GET, create - POST
+- List Answers:
+  - Method: GET
+  - The pk in the URL above identifies the question for which you want the answers
+  - Response: Array of answers for question specified in URL
+
+- Create Answer:
+  - Method: POST
+  - The pk in the URL above identifies the question you want to answer
+  - Data JSON: Example
+
+```
+{
+"answer_body": "your sample answer here"	
+}
+```
+
+  - Response: 201 Created
 
 
 ### Question Detail
 > /api/questions/int:pk/details
 - Method: GET
 - The pk in the URL above identifies the question for which you want details
-- Data JSON: Example
-
-```
-{
-	"id": 125,
-	"user": "dummy007",
-	"category_name": "Vegetables",
-	"answers": [],
-	"created_at": "2022-08-03T18:02:59.279623Z",
-	"updated_at": "2022-08-03T18:02:59.279648Z",
-	"title": "Greenie beanies",
-	"body": "Let's grow all the beans!",
-	"category": 3,
-	"image": null,
-	"starred_by": [
-		4
-	]
-}
-```
-
-Response: 200 OK
+- Response: Array of details for question specified in URL
 
 
 ### Star Question/Unstar Question
@@ -174,60 +139,4 @@ Response: 200 OK
 ### List All User Created Questions and Answers
 > /api/myquestions/
 - Method: GET
-- Data JSON: Example
-  
-```
-{
-	"questions": [
-	    {
-			"id": 10,
-			"user": "FredTomato",
-			"category_name": "Vegetables",
-			"answers": [
-				{
-					"pk": 16,
-					"user": "susan",
-					"question": 10,
-					"answer_body": "answer",
-					"starred_by": [],
-					"created_at": "2022-08-01T20:49:04.056605Z"
-				}
-			],
-			"created_at": "2022-07-29T18:36:16.196469Z",
-			"updated_at": "2022-08-01T17:23:48.173405Z",
-			"title": "What is your favorite french radish variety?",
-			"body": "Share your favorite french radish variety and provide a link to a seed distributor that carries it.",
-			"category": 3,
-			"image": null,
-			"starred_by": []
-	    }
-    ],
-    "answers": [
-		{"pk": 4,
-			"user": "FredTomato",
-			"question": 13,
-			"answer_body": "I forgot.....it also needs water.",
-			"starred_by": [],
-			"created_at": "2022-07-31T19:24:41.778900Z"
-		},
-        {
-			"pk": 7,
-			"user": "FredTomato",
-			"question": 13,
-			"answer_body": "Share your favorite french radish variety and provide a link to a seed distributor that carries it.",
-			"starred_by": [],
-			"created_at": "2022-08-01T17:28:19.876772Z"
-		},
-		{
-			"pk": 8,
-			"user": "FredTomato",
-			"question": 13,
-			"answer_body": "Just weed around it!",
-			"starred_by": [],
-			"created_at": "2022-08-01T17:28:43.228435Z"
-		}
-	]
-}
-```
-
-- Response: 200 OK
+- Response: Array of all questions and answers created by specific user
