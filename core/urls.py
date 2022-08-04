@@ -13,6 +13,7 @@ urlpatterns = [
     path('api/questions/new/', api_views.QuestionCreateView.as_view(), name='ask_new_question'),
     path('api/questions/<int:pk>/answer/', api_views.AnswerListCreateView.as_view(), name='answer_create'),
     path('api/questions/<int:pk>/details', api_views.QuestionDetailView.as_view(), name='question_details'),
+    path('api/questions/<int:pk>/star/', api_views.StarUnstarQuestionView.as_view(), name='star_unstar_question'),
     path('api/questions/<int:pk>/trash', api_views.QuestionDeleteView.as_view(), name='delete_question'),
     path('api/myquestions/', api_views.UserQuestionAndAnswerView.as_view(), name='user_questions_and_answers'),
 ]

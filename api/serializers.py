@@ -44,5 +44,5 @@ class StarSerializer(serializers.ModelSerializer):
     starred_by = serializers.ReadOnlyField(source='user.username')
     
     class Meta:
-        model: Question
+        model = Question
         fields = ('id', 'starred_by')
