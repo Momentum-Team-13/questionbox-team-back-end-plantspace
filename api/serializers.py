@@ -57,3 +57,7 @@ class StarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ('id', 'starred_by')
+
+
+# comment 1
+code
